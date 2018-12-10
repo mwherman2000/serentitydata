@@ -1,0 +1,22 @@
+﻿
+            if (NeoTrace.RUNTIME) LogExt("Put(bkey).#CLASSNAME#", e); // Template: NPCLevel2DPut_cs.txt
+            return true;
+        }
+
+        public static bool Put(#CLASSNAME# e, string key)
+        {
+            if (key.Length == 0) return false;
+            if (NeoTrace.RUNTIME) LogExt("Put(skey).#CLASSNAME#", e);
+
+            Neo.SmartContract.Framework.Services.Neo.StorageContext ctx = Neo.SmartContract.Framework.Services.Neo.Storage.CurrentContext;
+            string _skeyTag = key + _classKeyTag;
+            if (NeoTrace.RUNTIME) TraceRuntime("Put(skey)._skeyTag", _skeyTag);
+
+            #INITONLY#byte[] bsta = Neo.SmartContract.Framework.Services.Neo.Storage.Get(ctx, _skeyTag + _sSTA);
+            #INITONLY#if (NeoTrace.RUNTIME) TraceRuntime("Put(skey).bsta", bsta.Length, bsta);
+            #INITONLY#bool isMissing = false; if (bsta.Length == 0) isMissing = true;
+
+            e._state = NeoEntityModel.EntityState.PUTTED;
+            BigInteger bis = e._state.AsBigInteger();
+            if (NeoTrace.RUNTIME) TraceRuntime("Put(skey).bis", bis);
+            Neo.SmartContract.Framework.Services.Neo.Storage.Put(ctx, _skeyTag + _sSTA, bis);

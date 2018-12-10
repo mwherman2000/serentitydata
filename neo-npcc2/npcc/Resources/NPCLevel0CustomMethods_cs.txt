@@ -1,0 +1,21 @@
+﻿using System;
+using System.Numerics;
+
+/// <summary>
+/// #NAMESPACE#.#CLASSNAME# Custom Methods
+///
+/// Processed:       #NOWDATETIME# by #PROGRAMNAME# v#PROGRAMVERSION#
+/// NPC Project:     https://github.com/mwherman2000/neo-npcc2/blob/master/README.md
+/// NPC Lead:        Michael Herman (Toronto) (mwherman@parallelspace.net)
+/// </summary>
+
+namespace #NAMESPACE#
+{
+    public partial class #CLASSNAME#
+    {
+        public static void L0CustomMethod1(NeoCounter e) // TODO: Change the method name
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

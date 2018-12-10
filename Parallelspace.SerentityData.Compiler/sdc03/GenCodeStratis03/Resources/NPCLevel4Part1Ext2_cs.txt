@@ -1,0 +1,43 @@
+﻿using SerentityData.Runtime.Neo;
+using Neo.SmartContract.Framework;
+using System; // Template: NPCLevel4Part1Ext2_cs.txt
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+using System.Text;
+using System.Threading.Tasks;
+
+/// <summary>
+/// #NAMESPACE#.#CLASSNAME# - Level 4 Collectible (Extended)
+///
+/// Processed:       #NOWDATETIME# by #PROGRAMNAME# v#PROGRAMVERSION#
+/// SDC Project:     https://github.com/mwherman2000/serentitydata/blob/master/README.md
+/// SDC Lead:        Michael Herman (Toronto) (mwherman@parallelspace.net)
+/// </summary>
+
+namespace #NAMESPACE#
+{
+    public partial class #CLASSNAME# : NeoTraceRuntime /* Level 4 Collectible */
+    {
+        /// <summary>
+        /// Collectible methods (NPC Level 4)
+        /// </summary>
+        /// <param name="e">e</param>
+        /// <param name="vau">vau</param>
+        /// <param name="index">index</param>
+        /// <returns>bool</returns>
+        public static bool PutElement(#CLASSNAME# e, NeoVersionedAppUser vau, byte[] domain, byte[] bindex)
+        {
+            if (NeoVersionedAppUser.IsNull(vau)) return false;
+
+            Neo.SmartContract.Framework.Services.Neo.StorageContext ctx = Neo.SmartContract.Framework.Services.Neo.Storage.CurrentContext;
+            NeoStorageKey nsk = NeoStorageKey.New(vau, domain, _bClassName);
+
+            #INITONLY#byte[] bsta = Neo.SmartContract.Framework.Services.Neo.Storage.Get(ctx, NeoStorageKey.StorageKey(nsk, bindex, _bSTA));
+            #INITONLY#if (NeoTrace.RUNTIME) TraceRuntime("Get(bkey).#CLASSNAME#.bsta", bsta.Length, bsta);
+            #INITONLY#bool isMissing = false; if (bsta.Length == 0) isMissing = true;
+
+            //byte[] bkey;
+            e._state = NeoEntityModel.EntityState.PUTTED;
+            Neo.SmartContract.Framework.Services.Neo.Storage.Put(ctx, NeoStorageKey.StorageKey(nsk, bindex, _bSTA), e._state.AsBigInteger());
+ 

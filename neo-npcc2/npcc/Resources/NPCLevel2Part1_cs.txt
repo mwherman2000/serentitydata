@@ -1,0 +1,24 @@
+﻿using NPC.Runtime;
+using Neo.SmartContract.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+using System.Text;
+using System.Threading.Tasks;
+
+/// <summary>
+/// #NAMESPACE#.#CLASSNAME# - Level 2 Persistable
+///
+/// Processed:       #NOWDATETIME# by #PROGRAMNAME# v#PROGRAMVERSION#
+/// NPC Project:     https://github.com/mwherman2000/neo-npcc2/blob/master/README.md
+/// NPC Lead:        Michael Herman (Toronto) (mwherman@parallelspace.net)
+/// </summary>
+
+namespace #NAMESPACE#
+{
+    public partial class #CLASSNAME# : NeoTraceRuntime /* Level 2 Persistable */
+    {
+        // Class name and property names
+        private const string _className = "#CLASSNAME#";
+        private static readonly byte[] _bClassName = _className.AsByteArray();
